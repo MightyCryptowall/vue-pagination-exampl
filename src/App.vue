@@ -1,17 +1,34 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="container">
+  <PaginationComponent
+    :totalPages="10"
+    :perPage="10"
+    :currentPage="currentPage"
+    @pagechanged="onPageChange"
+  />
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import PaginationComponent from "./components/PaginationComponent.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld
-  }
-}
+    PaginationComponent,
+  },
+  data() {
+    return {
+      currentPage: 1,
+    };
+  },
+  methods: {
+    onPageChange(page) {
+      console.log(page);
+      this.currentPage = page;
+    },
+  },
+};
 </script>
 
 <style>
@@ -21,6 +38,13 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+}
+
+.container{
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 </style>
